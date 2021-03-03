@@ -1,15 +1,16 @@
 exports = function(payload, response) {
-
         // Payload body is a JSON string, convert into a JavaScript Object
         const data = JSON.parse(payload.body.text())
         // Each record is a Base64 encoded JSON string
-        //const document = JSON.parse(data)
-        const documents = data.map((record) => {
-            const document = record
-            return {
-                ...document
-            }
-        })
+        // const document = JSON.parse(data)
+        // const documents = data.map((record) => {
+        //     const document = record
+        //     return {
+        //         ...document
+        //     }
+        // })
+        const documents = []
+        documents.push(data)
         // Perform operations as a bulk
         const bulkOp = context.services.get("mongodb-atlas").db("Integration").collection("eventbridge").initializeOrderedBulkOp()
         documents.forEach((document) => {
