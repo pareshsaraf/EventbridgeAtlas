@@ -31,7 +31,31 @@ For our WebHook we need to write a function which:
 * Writes the object to MongoDB Atlas as a new document
 * Returns the correct status code and JSON body to eventbridge in the response
 
+https://github.com/pareshsaraf/EventbridgeAtlas/blob/main/InsertFunction.js does these steps. Copy this into Realm functions logic placeholder as shown in the below screenshot. 
+
 ![CreateFunction](/images/RealmFunction.png)
+
+## Test the webhook
+
+Copy the webhook URL in settings. Also copy sample curl command Snapshot below:
+
+![WebhookURL](/images/WebhookURL.png)
+
+Execute with below JSON Array in the body:
+[{"field":"value1"},{"field":"value2"}]
+Eg: 
+curl \
+-H "Content-Type: application/json" \
+-d '[{"field":"value1"},{"field":"value2"}]' \
+https://webhooks.mongodb-realm.com/api/client/v2.0/app/application-0-rosmq/service/test/incoming_webhook/webhook0
+
+Test whether the data is getting added in the collection. 
+
+
+## Integrate this with Eventbridge
+
+
+
 
 
 
